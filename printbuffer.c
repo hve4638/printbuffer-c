@@ -1,9 +1,5 @@
 #include <stdio.h>
 
-static inline bool isprintable(int ch) {
-	return (ch >= 0x21 && ch <= 0x7E);
-}
-
 void printbuffer(void* buffer, int length, int interval) {
 	const unsigned char* buf = (const unsigned char*)buffer;
 
@@ -25,7 +21,7 @@ void printbuffer(void* buffer, int length, int interval) {
 			if (pos + i >= length) break;
 			size_t ch = buf[pos + i];
 
-			if (isprintable(ch)) {
+			if (ch >= 0x21 && ch <= 0x7E) { // printable char
 				printf("%c", (int)ch);
 			}
 			else {
